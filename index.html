@@ -30,55 +30,62 @@
             gap: 1rem;
 
             padding: 1rem;
-            background-color: #eee;
+            background-color: #e0e8f8;
         }
 
-        form > div {
+        form > #input {
             display: flex;
             gap: 0;
         }
 
-        form > div input {
+        form > #input input {
             flex-grow: 1;
             border-radius: 0.5rem 0 0 0.5rem;
             background-color: white;
         }
 
-        form > div button {
+        form > #input button {
             border-radius: 0 0.5rem 0.5rem 0;
             background-color: #b4ccff;
         }
 
-        form > div button:disabled {
+        form > #input button:disabled {
             cursor: not-allowed;
         }
 
-        form > div button:enabled {
+        form > #input button:enabled {
             cursor: pointer;
         }
 
-        form > div button:enabled:hover {
+        form > #input button:enabled:hover {
             border-radius: 0 0.5rem 0.5rem 0;
             background-color: #acc3f5;
         }
 
-        form > textarea {
+        form > #output  {
+            display: flex;
             flex-grow: 1;
-            resize: none;
+            overflow: hidden;
             border-radius: 0.5rem;
             background-color: white;
+        }
 
+        form > #output textarea {
+            flex-grow: 1;
+            resize: none;
             font-family: 'Courier New', Courier, monospace;
         }
     </style>
 </head>
 <body>
     <form>
-        <div>
+        <div id="input">
             <input type="text" placeholder="Your Message">
             <button disabled type="submit">Send Message</button>
         </div>
-        <textarea readonly></textarea>
+        <div id="output">
+            <textarea readonly></textarea>
+        </div>
     </form>
 
     <script>
@@ -87,7 +94,10 @@
         const submit = document.querySelector("button[type=submit]");
 
         function println(msg) {
-            output.value = output.value.concat(msg, "\n");
+            if (output.value !== "")
+                output.value = output.value.concat("\n");
+
+            output.value = output.value.concat(msg);
             output.scrollTop = output.scrollHeight;
         }
 
