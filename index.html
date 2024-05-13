@@ -91,7 +91,7 @@
             output.scrollTop = output.scrollHeight;
         }
 
-        input.addEventListener("keyup", e => {
+        input.addEventListener("input", e => {
             if(input.value === ""){
                 submit.setAttribute("disabled", null);
             } else {
@@ -114,9 +114,14 @@
         };
 
         submit.addEventListener("click", e => {
+            // don't submit form, submit websocket!
             e.preventDefault();
             ws.send(input.value);
+
+            // reset input field
             input.value = "";
+            input.dispatchEvent(new Event("input"));
+            input.focus();
         });
     </script>
 </body>
