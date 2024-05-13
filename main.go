@@ -21,7 +21,7 @@ func main() {
 	// UI page
 	http.HandleFunc("GET /{topic...}", func(w http.ResponseWriter, r *http.Request) {
 		topic := "/" + strings.TrimRight(r.PathValue("topic"), "/")
-		homeTemplate.Execute(w, "/.ws"+topic)
+		homeTemplate.Execute(w, topic)
 	})
 
 	// actual websocket
