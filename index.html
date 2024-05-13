@@ -45,12 +45,19 @@
         }
 
         form > div button {
-            cursor: pointer;
             border-radius: 0 0.5rem 0.5rem 0;
             background-color: #b4ccff;
         }
 
-        form > div button:hover {
+        form > div button:disabled {
+            cursor: not-allowed;
+        }
+
+        form > div button:enabled {
+            cursor: pointer;
+        }
+
+        form > div button:enabled:hover {
             border-radius: 0 0.5rem 0.5rem 0;
             background-color: #acc3f5;
         }
@@ -69,7 +76,7 @@
     <form>
         <div>
             <input type="text" placeholder="Your Message">
-            <button type="submit">Send Message</button>
+            <button disabled type="submit">Send Message</button>
         </div>
         <textarea readonly></textarea>
     </form>
@@ -83,6 +90,14 @@
             output.value = output.value.concat(msg, "\n");
             output.scrollTop = output.scrollHeight;
         }
+
+        input.addEventListener("keyup", e => {
+            if(input.value === ""){
+                submit.setAttribute("disabled", null);
+            } else {
+                submit.removeAttribute("disabled");
+            }
+        });
 
         const ws = new WebSocket("/.ws{{ . }}");
         ws.onopen = e => {
