@@ -1,6 +1,8 @@
 # Broadsocket
 broadcast websocket messages to every client
 
+![screenshot](screenshot.png)
+
 ## About
 Broadsocket is a websocket testing server, where every message is broadcasted to **all connected clients**.
 This is useful if you want to write a service that depends on a websocket server that does not yet exists.
