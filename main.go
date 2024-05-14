@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 	"strings"
@@ -9,6 +10,10 @@ import (
 )
 
 func main() {
+	// adjustable port
+	bind_addr := flag.String("b", "localhost:8888", "host and port for serving broadsocket")
+	flag.Parse()
+
 	// UI page
 	http.HandleFunc("GET /{topic...}", func(w http.ResponseWriter, r *http.Request) {
 		topic := "/" + strings.TrimRight(r.PathValue("topic"), "/")
@@ -22,8 +27,8 @@ func main() {
 	})
 
 	// running the server
-	log.Println("Starting server at localhost:8888")
-	if err := http.ListenAndServe("localhost:8888", nil); err != nil {
+	log.Printf("Starting server at %s", *bind_addr)
+	if err := http.ListenAndServe(*bind_addr, nil); err != nil {
 		log.Fatal(err)
 	}
 }
