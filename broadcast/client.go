@@ -1,4 +1,4 @@
-package main
+package broadcast
 
 import (
 	"bytes"
@@ -32,7 +32,7 @@ func (c *Client) Unregister() {
 	c.conn.Close()
 }
 
-func serveWebsocket(topic string, w http.ResponseWriter, r *http.Request) {
+func ServeWebsocket(topic string, w http.ResponseWriter, r *http.Request) {
 	b := NewBroadcast(topic)
 
 	conn, err := upgrader.Upgrade(w, r, nil)

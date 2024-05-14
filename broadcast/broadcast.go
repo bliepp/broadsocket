@@ -1,4 +1,4 @@
-package main
+package broadcast
 
 import (
 	"github.com/gorilla/websocket"
@@ -12,7 +12,9 @@ type Broadcast struct {
 	unregister chan *Client
 }
 
+// map of all broadcasts (key is the topic)
 var broadcasts map[string]*Broadcast = make(map[string]*Broadcast)
+var upgrader = websocket.Upgrader{}
 
 func NewBroadcast(topic string) *Broadcast {
 	// reuse existing broadcasts on the same topic
