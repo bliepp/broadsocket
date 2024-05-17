@@ -18,7 +18,7 @@ Message broadcasts can be scoped in topics, i.e. only clients connected to the s
 ## Installation
 Right now broadsocket does not provide any prebuilt binaries. But don't worry, installing from source is pretty easy. The only requirement is a go compiler.
 
-First, clone the repository and enter the it:
+First, clone the repository and enter it:
 ```console
 $ git clone https://github.com/bliepp/broadsocket.git
 $ cd broadsocket
@@ -36,15 +36,14 @@ Make sure your `$PATH` environment variable includes your `$GOBIN` path (by defa
 
 ## Usage
 Broadsocket is written to work as a single executable with no runtime dependencies. Simply run it and optionally specifiy the bind address:
-
 ```console
-$ ./broadsocket [-b <host>:<port>]
+$ broadsocket [-b <host>:<port>]
 $
 ```
 
 By default broadsocket is served at `localhost:8888`.
 
-The websockets are now available at `localhost:8888/.ws/<topic>`. To read and send messages via a basic UI simply discard the `.ws` part of the URL (`localhost:8888/<topic>`). The topic can basically be any path appended to the root path (everaything after `#` and `? ` is ignored because of the way URLs work). New topics are automatically created when they are first called and automatically deleted if there are no clients connected anymore.  
+The websockets are now available at `localhost:8888/.ws/<topic>`. To read and send messages via a basic UI simply discard the `.ws` part of the URL (`localhost:8888/<topic>`). The topic can basically be any path appended to the root path (everything after `#` and `?` is ignored because of the way URLs work). New topics are automatically created when they are first called and automatically deleted if there are no clients connected anymore.  
 
 ## Building
 First, clone the repository and enter the it:
