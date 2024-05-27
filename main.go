@@ -23,7 +23,7 @@ func main() {
 	// actual websocket
 	http.HandleFunc("GET /.ws/{topic...}", func(w http.ResponseWriter, r *http.Request) {
 		topic := "/" + strings.TrimRight(r.PathValue("topic"), "/")
-		broadcast.ServeWebsocket(topic, w, r)
+		broadcast.ServeWebsocketClient(topic, w, r)
 	})
 
 	// running the server

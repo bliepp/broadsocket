@@ -32,7 +32,7 @@ func (c *Client) Unregister() {
 	c.conn.Close()
 }
 
-func ServeWebsocket(topic string, w http.ResponseWriter, r *http.Request) {
+func ServeWebsocketClient(topic string, w http.ResponseWriter, r *http.Request) {
 	b := NewBroadcast(topic)
 
 	conn, err := upgrader.Upgrade(w, r, nil)
