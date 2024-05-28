@@ -1,4 +1,4 @@
-package broadcast
+package application
 
 import (
 	"github.com/gorilla/websocket"

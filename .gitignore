@@ -1,5 +1,6 @@
 # Own rules
 tmp/
+log*.txt
 
 # Editors and workspaces
 .vscode

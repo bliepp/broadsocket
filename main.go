@@ -2,9 +2,8 @@ package main
 
 import (
 	"flag"
-	"log"
 
-	"broadsocket/broadcast"
+	"github.com/bliepp/broadsocket/application"
 )
 
 func main() {
@@ -13,8 +12,8 @@ func main() {
 	flag.Parse()
 
 	// running the server
-	a := broadcast.New()
+	a := application.New()
 	if err := a.ListenAndServe(*bind_addr); err != nil {
-		log.Fatal(err)
+		a.Logger.Fatal(err)
 	}
 }

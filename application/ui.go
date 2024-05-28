@@ -1,4 +1,4 @@
-package broadcast
+package application
 
 import (
 	_ "embed"
