@@ -1,6 +1,6 @@
 # Own rules
 tmp/
-log*.txt
+broadsocket*.log
 
 # Editors and workspaces
 .vscode

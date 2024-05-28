@@ -53,7 +53,7 @@ func (a *Application) ListenAndServe(addr string) error {
 	bluePrintf("\tWebsocket: http://%s/.ws/\n\n", webAddr)
 
 	// try writing to an additional log file
-	logFile, err := os.OpenFile("log.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	logFile, err := os.OpenFile("broadsocket.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err == nil {
 		defer logFile.Close()
 		a.Logger.SetOutput(io.MultiWriter(a.Logger.Writer(), logFile))
