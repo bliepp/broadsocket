@@ -4,7 +4,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"net/url"
 	"os"
 	"strings"
 
@@ -43,17 +42,15 @@ func New() *Application {
 
 func (a *Application) ListenAndServe(addr string) error {
 	// url form of bind addr
-	webuiAddr := url.URL{Scheme: "http", Host: addr, Path: "/"}
-	if webuiAddr.Hostname() == "" {
-		webuiAddr.Host = "0.0.0.0" + webuiAddr.Host
+	webAddr := addr
+	if strings.HasPrefix(webAddr, ":") {
+		webAddr = "0.0.0.0" + webAddr
 	}
-	wsAddr := webuiAddr
-	wsAddr.Path = ".ws/"
 
 	// welcome message(s)
 	boldPrintf("Welcome to %s\n\n", color.RedString("Broadsocket"))
-	bluePrintf("\tWeb UI:    %s\n", webuiAddr.String())
-	bluePrintf("\tWebsocket: %s\n\n", wsAddr.String())
+	bluePrintf("\tWeb UI:    http://%s/\n", webAddr)
+	bluePrintf("\tWebsocket: http://%s/.ws/\n\n", webAddr)
 
 	// try writing to an additional log file
 	logFile, err := os.OpenFile("log.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
