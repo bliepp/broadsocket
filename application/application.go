@@ -53,7 +53,6 @@ func (a *Application) handleWebsocket(topic string, w http.ResponseWriter, r *ht
 	}
 
 	client := b.NewClient(conn)
-	client.Register()
 
 	// getting messages from client and pushing them to the broadcast
 	go func() {

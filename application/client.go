@@ -10,10 +10,10 @@ type Client struct {
 	send      chan []byte
 }
 
-func NewClient(b *Broadcast, c *websocket.Conn) *Client {
+func NewClient(b *Broadcast, conn *websocket.Conn) *Client {
 	return &Client{
 		broadcast: b,
-		conn:      c,
+		conn:      conn,
 		send:      make(chan []byte, 256),
 	}
 }

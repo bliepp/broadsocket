@@ -39,8 +39,10 @@ func NewBroadcast(topic string) *Broadcast {
 }
 
 // create client that is attached to that broadcast
-func (b *Broadcast) NewClient(c *websocket.Conn) *Client {
-	return NewClient(b, c)
+func (b *Broadcast) NewClient(conn *websocket.Conn) *Client {
+	c := NewClient(b, conn)
+	c.Register()
+	return c
 }
 
 func (b *Broadcast) Run() {
